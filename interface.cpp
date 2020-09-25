@@ -27,3 +27,30 @@ int main() {
     Car car1;
     cout<<"fuel = " << car1.getFuel();
 }
+
+
+class Stack {
+ public:
+    Stack();
+    ~Stack();
+    void push(int);
+    int pop();
+ private:
+ int *data;
+ int count;
+};
+
+
+void func(Stack st) {
+    // Some code
+}
+void func2() {
+    Stack s;
+    // Code again
+    func(s);
+    // Some more code
+}
+ 
+ 
+ 
+
