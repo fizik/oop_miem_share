@@ -30,14 +30,14 @@ int main() {
 
 
 class Stack {
- public:
+  public:
     Stack();
     ~Stack();
     void push(int);
     int pop();
- private:
- int *data;
- int count;
+  private:
+    int *data;
+    int count;
 };
 
 
