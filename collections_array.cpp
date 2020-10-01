@@ -114,5 +114,5 @@ void TheCollection::insert(int pos, const TheData &d) {
 
 int main() {
     TheCollection j;
-    //cout<< counti(3);
+    //...
 }
