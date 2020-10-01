@@ -28,7 +28,6 @@ class TheCollection {
     TheData &get(int pos) const;
     void set(int pos, const TheData&);
     int getCount() const;
-    // Или так (лучше). 
   private:
     // Этот тип доступен только изнутри.
     struct ListElement {
