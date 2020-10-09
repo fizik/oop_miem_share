@@ -25,6 +25,8 @@ class EquipmentTree {
     char **getEquipmentList(char **, int&);
     // Выводит оборудование с текущего узла
     void getEquipmentList();
+    // Обратный обход дерева
+    void getRevEquipmentList();
   private:
     void mergeLists(char **&res, int &cnt, char **tmp, int c);
     EquipmentTree **childs;  
@@ -92,15 +94,24 @@ void EquipmentTree::getEquipmentList() {
     }
 }
 
+void EquipmentTree::getRevEquipmentList() {
+    for(auto i=0; i<childCount; i++) {
+        childs[i]->getRevEquipmentList();
+        cout<<" "<<childString<<";";
+    }
+    cout<<infoString;
+}
 
 int main() {
     EquipmentTree e01("Таллинская 34, учебн.", "Этаж"),
         e11("Первый", "Комната"),
+        e12("Второй", "Комната"),
         e21("101", ""),
         e31("Принтер 56", ""),
         e32("Ноутбук 57", "");
         
     e01.AddChild(&e11);
+    e01.AddChild(&e12);
     e11.AddChild(&e21);
     e21.AddChild(&e31);
     e21.AddChild(&e32);
@@ -113,4 +124,6 @@ int main() {
      for(auto i=0; i<cnt; i++)
          cout<<listEquipment[i]<<"\n";
 
+    cout<<"\n\n";
+    e01.getRevEquipmentList();
 }
