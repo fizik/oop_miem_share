@@ -83,13 +83,6 @@ class FileStream : Stream {
     // And so on.
 };
 
-class Point {
-  public:
-    void setPosition(int _x, int _y);
-    void getPosition(int &_x, int &_y);
-  private:
-    int x, y;
-};
 
 int main() {
     
