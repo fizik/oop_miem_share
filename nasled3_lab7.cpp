@@ -3,8 +3,8 @@ using namespace std;
 
 class Point {
   public:
-    void setPosition(int _x, int _y);
-    void getPosition(int &_x, int &_y);
+    void setPosition(int _x, int _y) {};
+    void getPosition(int &_x, int &_y) {};
   private:
     int x, y;
 };
