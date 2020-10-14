@@ -9,11 +9,10 @@ class Point {
     int x, y;
 };
 
-class Unit : Point {
+class Unit : public Point {
   public:
     //…
 };
-
 
 int main() {
     Unit unit1;
