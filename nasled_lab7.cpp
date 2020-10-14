@@ -79,9 +79,17 @@ Unit::Unit(int _x, int _y, string _name) :
 MilitaryUnit::MilitaryUnit() :
     health(0) { cout <<"MilitaryUnit\n"; }  
 
-MilitaryUnit::MilitaryUnit(int _x, int _y, string _name) :
-    Unit(_x, _y, _name), health(0) { cout <<"MilitaryUnit3\n";  }
+//правильный конструктор
+// MilitaryUnit::MilitaryUnit(int _x, int _y, string _name) :
+//     Unit(_x, _y, _name), health(0) { cout <<"MilitaryUnit3\n";  }
 
+//неправильный конструктор
+MilitaryUnit::MilitaryUnit(int _x, int _y, string _name) {
+    cout <<"MilitaryUnit3\n";  
+    Unit(_x, _y, _name);
+    health=0;
+}
+    
 MilitaryUnit::~MilitaryUnit() { }  
 Unit::~Unit() {}
     
