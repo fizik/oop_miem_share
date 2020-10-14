@@ -3,19 +3,6 @@ using namespace std;
 
 class Goods {}; 
 
-class First { // Базовый класс.
-  public:
-    int a, b;  
-    void f1();
-};
-
-class Second: First { // Second наследуется от  First.
-  public:
-    double c, d;  
-    int f2();
-}; // Теперь у него есть 4 свойства и 2 метода.
-
-
 class Unit {
   public:
     Unit();
@@ -83,7 +70,23 @@ class FileStream : Stream {
     // And so on.
 };
 
-
-int main() {
+Unit::Unit() :
+    x(0), y(0), name("") { cout <<"Unit\n"; }
     
+Unit::Unit(int _x, int _y, string _name) :
+    x(_x), y(_y), name(_name) { cout <<"Unit3\n";  }
+
+MilitaryUnit::MilitaryUnit() :
+    health(0) { cout <<"MilitaryUnit\n"; }  
+
+MilitaryUnit::MilitaryUnit(int _x, int _y, string _name) :
+    Unit(_x, _y, _name), health(0) { cout <<"MilitaryUnit3\n";  }
+
+MilitaryUnit::~MilitaryUnit() { }  
+Unit::~Unit() {}
+    
+int main() {
+    MilitaryUnit mu0;
+    MilitaryUnit mu1(10, 10, "unit1");
+    cout <<"done";
 }
