@@ -52,44 +52,16 @@ class MilitaryUnit : public Unit { // Так лучше
 };
 
 class MilitaryUnit2 : public Unit {
+  public:  
     // Будет сделана реализация
     virtual void move();
 };
 
 class Chivalry : public MilitaryUnit {
+  public:  
     // …
     virtual void move();
     // Везде надо писать virtual
-};
-
-class Stream {
-  public:
-    void save (int);  
-    void load (int);  
-    void save(double);  
-    void load (double);
-};
-
-class NetworkStream : Stream {
-  public:
-    void save(int);
-    void load(int);
-    void save(double);
-    void load(double);
-    bool openConnection(string);
-    bool closeConnection();
-    // And so on.
-};
-
-class FileStream : Stream {
-  public:
-    void save(int);
-    void load(int);
-    void save(double);
-    void load(double);
-    bool openFile(string);
-    bool closeFile();
-    // And so on.
 };
 
 Unit::Unit() :
@@ -97,20 +69,6 @@ Unit::Unit() :
     
 Unit::Unit(int _x, int _y, string _name) :
     x(_x), y(_y), name(_name) { cout <<"Unit3\n";  }
-
-// MilitaryUnit::MilitaryUnit() :
-//     health(0) { cout <<"MilitaryUnit\n"; }  
-
-//неправильный конструктор
-// MilitaryUnit::MilitaryUnit(int _x, int _y, string _name) {
-//     cout <<"MilitaryUnit3\n";  
-//     Unit(_x, _y, _name);
-//     health=0;
-// }
-
-//правильный конструктор
-// MilitaryUnit::MilitaryUnit(int _x, int _y, string _name) :
-//     Unit(_x, _y, _name), health(0) { cout <<"MilitaryUnit3\n";  }
 
 //самый правильный конструктор
 MilitaryUnit::MilitaryUnit() { init(); }
@@ -133,6 +91,10 @@ void MilitaryUnit::move() {
         ; // And so on
     }
     cout <<"MilitaryUnit::move\n";
+}
+
+void Chivalry::move() {
+    cout <<"Chivalry::move\n";
 }
 
 class Battleship : MilitaryUnit {};
@@ -164,7 +126,7 @@ void main2() {
     cout <<"done";
 }
 
-int main() {
+void main3() {
     MilitaryUnit *munit=new MilitaryUnit;  
     Unit *unit=munit;
     
@@ -174,3 +136,13 @@ int main() {
     //^^^^^Корректное преобразование типов.
 }
 
+int main() {
+    Unit unit;
+    Chivalry *chiv=new Chivalry;
+    chiv->move(); // Корректно передвигает
+    unit.move();  // Обычный юнит не передвигает
+    ((Unit*) chiv)->move(); // Передвигает
+    //^^^^^ Это корректное преобразование типов
+    //((Unit*) chiv)->Chivalry::move();
+    // Всё равно передвигает
+}
