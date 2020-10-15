@@ -29,17 +29,30 @@ class TradeUnit : Unit {
     Goods *storage;
 };
 
-class MilitaryUnit : Unit {
-  public:
+// class MilitaryUnit : Unit {
+//   public:
+//     MilitaryUnit();
+//     MilitaryUnit(int _x, int _y, string _name);
+//     ~MilitaryUnit();  
+//     void fight();
+//   private:
+//     int health;
+//     void init();
+//     // И еще много свойств и методов.
+// };
+
+class MilitaryUnit : public Unit { // Так лучше
+  public:  
     MilitaryUnit();
     MilitaryUnit(int _x, int _y, string _name);
     ~MilitaryUnit();  
     void fight();
-  private:
+ protected:  
     int health;
     void init();
-    // И еще много свойств и методов.
+// И еще много свойств и методов.
 };
+
 
 class Stream {
   public:
