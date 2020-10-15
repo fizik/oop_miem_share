@@ -119,6 +119,7 @@ Unit::~Unit() {}
 
 void Unit::move() {
     // Обычный юнит не передвигается
+    cout <<"Unit::move\n";
 }
 
 // Поведение войск несколько иное.
@@ -127,10 +128,21 @@ void MilitaryUnit::move() {
         case guard: // Stay here
         ; // And so on
     }
+    cout <<"MilitaryUnit::move\n";
 }
 
 
 int main() {
+    Unit unit;
+    MilitaryUnit *munit=new MilitaryUnit;
+
+    munit->move(); // Корректно передвигает
+    unit.move(); // Обычный юнит не передвигается 
+    ((Unit*)munit)->move(); // Аналогично.
+    //^^^^^Корректное преобразование типов.
+}
+
+void main2() {
     //MilitaryUnit mu0;
     MilitaryUnit mu1(10, 10, "unit1");
     cout <<"done";
