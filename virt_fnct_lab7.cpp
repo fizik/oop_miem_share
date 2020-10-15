@@ -99,7 +99,7 @@ void Chivalry::move() {
 
 class Battleship : MilitaryUnit {};
 
-class TheGame {
+class TheGame1 {
   private:
     // чтобы каждый объект вел себя
     // корректно, надо знать его тип.
@@ -110,6 +110,26 @@ class TheGame {
     // И так несколько раз.
 };
 
+class TheGame {
+  public:  
+    void moveAll();
+  private:
+    // Сейчас для каждого объекта будет вызываться
+    // правильный move.
+    Unit **allUnits; // Именно массив указателей
+    int unitsCount;
+};
+
+void TheGame::moveAll() {
+    for( int i=0; i<unitsCount; i++ )
+        allUnits[i]->move(); // Разберутся.
+}
+
+int main() {
+    TheGame game;
+    game.moveAll();
+}
+    
 void main1() {
     Unit unit;
     MilitaryUnit *munit=new MilitaryUnit;
@@ -136,13 +156,14 @@ void main3() {
     //^^^^^Корректное преобразование типов.
 }
 
-int main() {
+int main4() {
     Unit unit;
     Chivalry *chiv=new Chivalry;
     chiv->move(); // Корректно передвигает
     unit.move();  // Обычный юнит не передвигает
-    ((Unit*) chiv)->move(); // Передвигает
+    ((Unit*) chiv)->move(); // Корректно передвигает
     //^^^^^ Это корректное преобразование типов
-    //((Unit*) chiv)->Chivalry::move();
+    //((Unit*) chiv)->Chivalry::move(); //error: ‘Chivalry’ is not a base of ‘Unit’
     // Всё равно передвигает
+    return 0;
 }
