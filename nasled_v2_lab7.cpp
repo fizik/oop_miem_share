@@ -29,6 +29,8 @@ class TradeUnit : Unit {
     Goods *storage;
 };
 
+enum Torders {others, guard};
+
 // class MilitaryUnit : Unit {
 //   public:
 //     MilitaryUnit();
@@ -47,10 +49,12 @@ class MilitaryUnit : public Unit { // Так лучше
     MilitaryUnit(int _x, int _y, string _name);
     ~MilitaryUnit();  
     void fight();
- protected:  
+    void move();
+  protected: // Так лучше 
     int health;
+    Torders orders;
     void init();
-// И еще много свойств и методов.
+    // И еще много свойств и методов.
 };
 
 
@@ -112,7 +116,20 @@ void MilitaryUnit::init() { health=0; } // Так лучше
 
 MilitaryUnit::~MilitaryUnit() { }  
 Unit::~Unit() {}
-    
+
+void Unit::move() {
+    // Обычный юнит не передвигается
+}
+
+// Поведение войск несколько иное.
+void MilitaryUnit::move() {
+    switch(orders) {
+        case guard: // Stay here
+        ; // And so on
+    }
+}
+
+
 int main() {
     //MilitaryUnit mu0;
     MilitaryUnit mu1(10, 10, "unit1");
