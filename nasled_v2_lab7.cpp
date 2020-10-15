@@ -132,7 +132,7 @@ void MilitaryUnit::move() {
 }
 
 
-int main() {
+void main1() {
     Unit unit;
     MilitaryUnit *munit=new MilitaryUnit;
 
@@ -141,6 +141,18 @@ int main() {
     ((Unit*)munit)->move(); // Аналогично.
     //^^^^^Корректное преобразование типов.
 }
+
+int main() {
+    MilitaryUnit *munit=new MilitaryUnit;  
+    Unit *unit=munit;
+    
+    munit->move(); // Корректно передвигает 
+    unit->move(); // Обычный юнит не передвигается 
+    ((MilitaryUnit *)unit)->move();
+    // ^^^^^Корректное преобразование типов.
+    // Передвигает юнит
+}
+
 
 void main2() {
     //MilitaryUnit mu0;
