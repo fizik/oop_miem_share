@@ -151,7 +151,7 @@ int main() {
         new Unit,
         new TradeUnit,
         new Chivalry
-    };
+    }; //   ^^^ Это корректное преобразование типов
 
     for( auto i=0; i<sizeof(units)/sizeof(*units); i++ )
         units[i]->move();// Корректно передвигает разные классы
