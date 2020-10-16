@@ -6,7 +6,7 @@ class Goods {};
 class Unit {
   public:
     Unit();
-    ~Unit();  
+    ~Unit();
     virtual void move();
     // ...
 };
@@ -21,7 +21,7 @@ class TradeUnit : public Unit {
     Goods *storage;
 };
 
-class MilitaryUnit : public Unit { // Так лучше
+class MilitaryUnit : public Unit { 
   public:  
     MilitaryUnit();
     ~MilitaryUnit();  
@@ -72,7 +72,29 @@ void Chivalry::move() {
     cout <<"Chivalry::move\n";
 }
 
+int oldmain() {
+    // чтобы каждый объект вел себя
+    // корректно, надо знать его тип.    
+    Unit *un=new Unit;
+    TradeUnit *tun=new TradeUnit;
+    Chivalry *ch=new Chivalry;
+   
+    un->move();
+    tun->move();
+    ch->move();
+    // И так далее...
+        
+    delete un;
+    delete tun;
+    delete ch;
+    // И так далее...
+}
+
 int main() {
+    oldmain() ;
+    
+    return 0;
+    
     Unit *units[]= {
         new Unit,
         new TradeUnit,
