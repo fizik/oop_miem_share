@@ -8,6 +8,7 @@ class Unit {
     Unit();
     ~Unit();  
     virtual void move();
+    // ...
 };
 
 class TradeUnit : public Unit {
