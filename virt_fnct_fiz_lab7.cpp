@@ -35,6 +35,12 @@ class Chivalry : public MilitaryUnit {
     virtual void move();
 };
 
+Unit::Unit() { cout <<"Unit\n"; }
+Unit::~Unit() { cout <<"~Unit\n"; }
+
+MilitaryUnit::MilitaryUnit() { cout <<"MilitaryUnit\n";  }
+MilitaryUnit::~MilitaryUnit() {  cout <<"~MilitaryUnit\n"; }  
+    
 TradeUnit::TradeUnit() {
     cout<<"TradeUnit\n";
     storage = new Goods[5]; // буфер
@@ -46,31 +52,13 @@ TradeUnit::~TradeUnit() {
     delete [] storage;
 };
 
-void TradeUnit::move() {
-    cout <<"TradeUnit::move\n";
-}
-
 Chivalry::Chivalry() { cout <<"Chivalry\n";  }
 Chivalry::~Chivalry() { cout <<"~Chivalry\n";  }
 
-Unit::Unit() { cout <<"Unit\n"; }
-Unit::~Unit() { cout <<"~Unit\n"; }
-    
-MilitaryUnit::MilitaryUnit() { cout <<"MilitaryUnit\n";  }
-MilitaryUnit::~MilitaryUnit() {  cout <<"~MilitaryUnit\n"; }  
-
-void Unit::move() {
-    cout <<"Unit::move\n";
-}
-
-// Поведение войск несколько иное.
-void MilitaryUnit::move() {
-    cout <<"MilitaryUnit::move\n";
-}
-
-void Chivalry::move() {
-    cout <<"Chivalry::move\n";
-}
+void Unit::move() { cout <<"Unit::move\n"; }
+void TradeUnit::move() { cout <<"TradeUnit::move\n"; }
+void MilitaryUnit::move() { cout <<"MilitaryUnit::move\n"; }
+void Chivalry::move() { cout <<"Chivalry::move\n"; }
 
 int oldmain() {
     // чтобы каждый объект вел себя
@@ -88,13 +76,10 @@ int oldmain() {
     delete tun;
     delete ch;
     // И так далее...
+    return 0;
 }
 
 int main() {
-    oldmain() ;
-    
-    return 0;
-    
     Unit *units[]= {
         new Unit,
         new TradeUnit,
@@ -109,4 +94,7 @@ int main() {
         
     cout<<"sizeof(units)="<<sizeof(units)<<"\n";
     cout<<"sizeof(*units)="<<sizeof(*units)<<"\n";
+
+    // oldmain() ;
+    // return 0;
 }
