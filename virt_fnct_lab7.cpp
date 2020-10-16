@@ -1,8 +1,6 @@
 #include <iostream>
 using namespace std;
 
-class Goods {}; 
-
 class Unit {
   public:
     Unit();
@@ -21,7 +19,9 @@ class Unit2 {
     // more code
 };
 
-class TradeUnit : Unit {
+class Goods {}; 
+
+class TradeUnit : public Unit {
   public:
     TradeUnit();	
     ~TradeUnit();  
@@ -30,10 +30,27 @@ class TradeUnit : Unit {
     Goods unloadGoods(int pos);
     Goods getGoods(int pos);
     int getGoodsCount() {return goodsCount;}
+    virtual void move();
   private:
     int goodsCount;
     Goods *storage;
 };
+
+
+TradeUnit::TradeUnit() {
+    cout<<"TradeUnit\n";
+    storage = new Goods[5]; // буфер
+    goodsCount=0;
+};
+
+TradeUnit::~TradeUnit() {
+    cout<<"~TradeUnit\n";
+    delete [] storage;
+};
+
+void TradeUnit::move() {
+    cout <<"TradeUnit::move\n";
+}
 
 enum Torders {others, guard};
 
@@ -60,9 +77,12 @@ class MilitaryUnit2 : public Unit {
 class Chivalry : public MilitaryUnit {
   public:  
     // …
+    Chivalry();
     virtual void move();
     // Везде надо писать virtual
 };
+
+Chivalry::Chivalry() { cout <<"Chivalry\n";  }
 
 Unit::Unit() :
     x(0), y(0), name("") { cout <<"Unit\n"; }
@@ -71,13 +91,13 @@ Unit::Unit(int _x, int _y, string _name) :
     x(_x), y(_y), name(_name) { cout <<"Unit3\n";  }
 
 //самый правильный конструктор
-MilitaryUnit::MilitaryUnit() { init(); }
+MilitaryUnit::MilitaryUnit() { init();  cout <<"MilitaryUnit\n";  }
 MilitaryUnit::MilitaryUnit(int _x, int _y, string _name) :
     Unit(_x, _y, _name) { init(); }
 void MilitaryUnit::init() { health=0; } // Так лучше
 
-MilitaryUnit::~MilitaryUnit() { }  
-Unit::~Unit() {}
+MilitaryUnit::~MilitaryUnit() {  cout <<"~MilitaryUnit\n"; }  
+Unit::~Unit() { cout <<"~Unit\n"; }
 
 void Unit::move() {
     // Обычный юнит не передвигается
@@ -125,7 +145,38 @@ void TheGame::moveAll() {
         allUnits[i]->move(); // Разберутся.
 }
 
+
 int main() {
+    Unit *units[]= {
+        new Unit,
+        new TradeUnit,
+        new Chivalry
+    };
+
+    for( auto i=0; i<sizeof(units)/sizeof(*units); i++ )
+        units[i]->move();// Корректно передвигает разные классы
+        
+    for( auto i=0; i<sizeof(units)/sizeof(*units); i++ )
+        delete units[i]; // Можем не задумываться о типах
+        
+    cout<<"sizeof(units)="<<sizeof(units)<<"\n";
+    cout<<"sizeof(*units)="<<sizeof(*units)<<"\n";
+}
+
+#if 0
+int main() {
+    Unit unit;
+    Chivalry *chiv=new Chivalry;
+    chiv->move(); // Корректно передвигает
+    unit.move();  // Обычный юнит не передвигает
+    ((Unit*) chiv)->move(); // Корректно передвигает
+    //^^^^^ Это корректное преобразование типов
+    //((Unit*) chiv)->Chivalry::move(); //error: ‘Chivalry’ is not a base of ‘Unit’
+    // Всё равно передвигает
+    return 0;
+}
+
+int main0() {
     TheGame game;
     game.moveAll();
 }
@@ -155,15 +206,4 @@ void main3() {
     ((MilitaryUnit *)unit)->move(); // Передвигает юнит
     //^^^^^Корректное преобразование типов.
 }
-
-int main4() {
-    Unit unit;
-    Chivalry *chiv=new Chivalry;
-    chiv->move(); // Корректно передвигает
-    unit.move();  // Обычный юнит не передвигает
-    ((Unit*) chiv)->move(); // Корректно передвигает
-    //^^^^^ Это корректное преобразование типов
-    //((Unit*) chiv)->Chivalry::move(); //error: ‘Chivalry’ is not a base of ‘Unit’
-    // Всё равно передвигает
-    return 0;
-}
+#endif
