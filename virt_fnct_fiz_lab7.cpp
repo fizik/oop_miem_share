@@ -30,6 +30,7 @@ class MilitaryUnit : public Unit { // Так лучше
 class Chivalry : public MilitaryUnit {
   public:
     Chivalry();
+    ~Chivalry();
     virtual void move();
 };
 
@@ -49,6 +50,7 @@ void TradeUnit::move() {
 }
 
 Chivalry::Chivalry() { cout <<"Chivalry\n";  }
+Chivalry::~Chivalry() { cout <<"~Chivalry\n";  }
 
 Unit::Unit() { cout <<"Unit\n"; }
 Unit::~Unit() { cout <<"~Unit\n"; }
