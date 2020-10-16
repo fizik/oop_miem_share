@@ -39,7 +39,7 @@ class Chivalry : public MilitaryUnit {
         kind=ukChivalry;
     };
     // …
-    virtual void move();
+    virtual void move() {cout<<"cmv\n";};
 };
 
 
@@ -50,10 +50,26 @@ class Galley : public MilitaryUnit {
         kind=ukGalley;
     };
     // …
+    virtual void move() {cout<<"mmv\n";};
 };
 
 
-int main() {
-    cout <<"ok\n";
+class TheGame {
+  public:  
+    void moveAll();
+  private:
+    // Сейчас для каждого объекта будет вызываться
+    // правильный move.
+    Unit **allUnits; // Именно массив указателей
+    int unitsCount;
+};
+
+void TheGame::moveAll() {
+    for( int i=0; i<unitsCount; i++ )
+        allUnits[i]->move(); // Разберутся.
 }
-    
+
+int main() {
+    TheGame game;
+    game.moveAll();
+}
