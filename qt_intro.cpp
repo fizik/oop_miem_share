@@ -18,3 +18,5 @@ void Counter::setValue(int value) {
         emit valueChanged(value);
     }
 }
+
+// emit - пустой макрос, служит для отличия сигналов от обычных методов
