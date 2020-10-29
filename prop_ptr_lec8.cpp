@@ -31,11 +31,16 @@ void sortMinesBy(Mine *mns, int mCount, SortModes sortBy) {
     // and so on
 }
 
+int tFunction(float, char){
+    return 5;
+}
+
+
 int main() {
     int Mine::*field;
     Mine m1;
     field=NULL;
-    cout<<(long) ((void*)(&(m1.*field)))<<"\n";
+    cout<<((void*)(&(m1.*field)))<<"\n";
     
     
     m1.*field=0xffff;
@@ -44,10 +49,25 @@ int main() {
     
     field=&Mine::interval;
     m1.*field=10;
-    cout<<(long) ((void*)(&(m1.*field)))<<"\n";
+    cout<<((void*)(&(m1.*field)))<<"\n";
     
-//    cout<<(long) ((void*)((field)))<<"\n"; //error
+    cout<< ((void*)((&field)))<<"\n"; //
+//  cout<< ((void*)((field)))<<"\n"; //error
+    cout<<sizeof(field)<<"\n"; //
 
+    int *pi=&m1.interval;
+    cout<<pi<<"\n"; //
+    
+    
+    int (*pt2Function)(float, char);
+    pt2Function=tFunction;
+    
+    
+    cout<< ((void*)((pt2Function)))<<"\n"; //
 
-
+    int (Mine::*pt2Member)() const = NULL;
+    
+    cout<< ((void*)((pt2Member)))<<"\n"; //
+    pt2Member = &Mine::getProduct; 
+    cout<< ((void*)((pt2Member)))<<"\n"; //
 }
