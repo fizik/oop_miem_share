@@ -2,12 +2,14 @@
 
 using namespace std;
 
+enum SortModes {smProd, smIntr, smWork};
 
 struct Mine{
     int getProduct() const{return 0;};
     int getInterval() const{return 0;};
     
     int interval;
+    int produced;
 };
 
 void swapMines(Mine &m1, Mine &m2) {
@@ -18,6 +20,15 @@ void sortMines(int Mine::*field, Mine *arr, int len) {
         for( int j=i+1; j<len; j++ )
             if( arr[i].*field> arr[j].*field )
                 swapMines(arr[i], arr[j]);
+}
+
+
+void sortMinesBy(Mine *mns, int mCount, SortModes sortBy) {
+    if( sortBy==smProd )
+        sortMines( &Mine::produced, mns, mCount);  
+    else if( sortBy==smIntr )
+        sortMines( &Mine::interval, mns, mCount);
+    // and so on
 }
 
 int main() {
@@ -36,4 +47,7 @@ int main() {
     cout<<(long) ((void*)(&(m1.*field)))<<"\n";
     
 //    cout<<(long) ((void*)((field)))<<"\n"; //error
+
+
+
 }
