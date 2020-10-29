@@ -20,3 +20,8 @@ void Counter::setValue(int value) {
 }
 
 // emit - пустой макрос, служит для отличия сигналов от обычных методов
+
+Counter a, b;
+QObject::connect(&a, &Counter::valueChanged, &b, &Counter::setValue);
+a.setValue(12); // a.value() == 12, b.value() == 12
+b.setValue(48); // a.value() == 12, b.value() == 48
