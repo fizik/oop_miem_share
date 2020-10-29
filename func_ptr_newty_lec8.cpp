@@ -18,11 +18,11 @@ int TMyClass::DoIt(float a, char b, char c){
     cout<<"DoIt\n";
     int result;
     TMyClass instance1;
-    result = (instance1.*pt2Member)(12, 'a',  'b');
-    result = (*this.*pt2Member)(12, 'a', 'b');
+    result = (instance1.*pt2Member)(a, b, c);
+    result = (*this.*pt2Member)(a, b, c);
     
     TMyClass* instance2 = new TMyClass;  
-    result = (instance2->*pt2Member)(12, 'a', 'b');
+    result = (instance2->*pt2Member)(a, b, c);
     delete instance2;
     return 0;
 }
