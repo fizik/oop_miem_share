@@ -11,3 +11,10 @@ class Counter : public QObject {
  private: 
   int m_value;
 };
+
+void Counter::setValue(int value) {
+    if (value != m_value) {  
+        m_value = value;
+        emit valueChanged(value);
+    }
+}
