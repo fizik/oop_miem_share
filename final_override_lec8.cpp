@@ -13,7 +13,7 @@ struct D1 : public B {
     virtual void g(long); // OK: новая виртуальная функция
 };
 
-#if 0
+#if Wrong
 struct Wrong : public B {
     void sone_func() override; //Ошибка: неверное имя функции 
     virtual void f(long) override; //Ошибка: несоответствие типа 
