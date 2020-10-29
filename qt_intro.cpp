@@ -1,6 +1,6 @@
 #include <QObject>
 class Counter : public QObject {
-  Q_OBJECT
+  Q_OBJECT // макрос определяет связку функций и статический QMetaObject
  public:
   Counter() { m_value = 0; }
   int value() const { return m_value; }
