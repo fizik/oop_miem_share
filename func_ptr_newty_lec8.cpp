@@ -16,12 +16,13 @@ int (TMyClass::*pt2ConstMember)(float,  char, char) const = NULL;
 
 int TMyClass::DoIt(float a, char b, char c){
     cout<<"DoIt\n";
+    int result;
     TMyClass instance1;
-    int result3 = (instance1.*pt2Member)(12, 'a',  'b');
-    int result4 = (*this.*pt2Member)(12, 'a', 'b');
+    result = (instance1.*pt2Member)(12, 'a',  'b');
+    result = (*this.*pt2Member)(12, 'a', 'b');
     
     TMyClass* instance2 = new TMyClass;  
-    int result5 = (instance2->*pt2Member)(12, 'a', 'b');
+    result = (instance2->*pt2Member)(12, 'a', 'b');
     delete instance2;
     return 0;
 }
