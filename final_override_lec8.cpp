@@ -16,10 +16,17 @@ struct B : public A {
     void sone_func() override; // Ошибка: неверное имя функции 
 };
 
-struct D : B {
+struct C : B {
     virtual void g() const; // Ошибка: замещение финальной функции
 };
 
+struct F final {
+    int x, y;
+};
+
+struct D : F { // Ошибка: наследование от final классов запрещено
+    int z;
+};
 
 int main() {
 }
