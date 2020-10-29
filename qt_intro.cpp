@@ -33,3 +33,14 @@ QObject::connect(&a, &Counter::valueChanged,  &c, &Counter::setValue);
 QObject::connect(&b, &Counter::valueChanged,  &d, &Counter::setValue);
 a.setValue(12); // a==12, b==12, c==12, d==12  
 b.setValue(48); // a==12, b==48, c==12, d==48
+
+class QButton {
+    // …
+  public slots: 
+    void clicked();
+};
+
+void MainWindow::on_pushButton_13_clicked();
+
+QObject::connect(button_13, clicked,  myWindow, on_pushButton_13_clicked);
+
