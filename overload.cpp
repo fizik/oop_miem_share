@@ -42,7 +42,7 @@ MyClass& MyClass::operator += (const MyClass &obj) {
     return *this;
 }
 
-MyClass & MyClass::operator=(const MyClass &obj) {
+MyClass& MyClass::operator=(const MyClass &obj) {
     // some code here  
     a=obj.getA();
     return *this;
@@ -63,7 +63,7 @@ MyClass MyClass::operator - () { // Unary minus.
     return tmp;
 }
 
-MyClass &MyClass::operator -- () { // Prefix form
+MyClass& MyClass::operator -- () { // Prefix form
     a--;
     return *this;
 }
