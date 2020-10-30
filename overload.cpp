@@ -24,19 +24,19 @@ class MyClass {
     MyClass& operator-=(const MyClass &obj);  
     int getA() const { return a; };
     
-    MyClass& operator = (const MyClass &obj);
-//    MyClass operator = (const MyClass &obj);
+    MyClass& operator=(const MyClass &obj);
+//    MyClass operator=(const MyClass &obj);
 
-    MyClass operator + (const MyClass &obj);
-    MyClass operator - ();
-    MyClass& operator -- ();
-    MyClass operator -- (int);
+    MyClass operator+(const MyClass &obj);
+    MyClass operator-();
+    MyClass& operator--();
+    MyClass operator--(int);
 
 
-    MyClass operator + (const float &obj); //debug    
+    MyClass operator+(const float &obj); //debug    
 };
 
-MyClass& MyClass::operator += (const MyClass &obj) {
+MyClass& MyClass::operator+=(const MyClass &obj) {
     a+=obj.getA();
     cout << "+=\n";
     return *this;
@@ -48,7 +48,7 @@ MyClass& MyClass::operator=(const MyClass &obj) {
     return *this;
 }
 
-MyClass MyClass::operator+ (const MyClass &obj) {
+MyClass MyClass::operator+(const MyClass &obj) {
     MyClass tmp(*this);  
     tmp+=obj;
     return tmp;
@@ -58,24 +58,24 @@ MyClass MyClass::operator+(const float&obj) {
     return *this+=obj;
 }
 
-MyClass MyClass::operator - () { // Unary minus.
+MyClass MyClass::operator-() { // Unary minus.
     MyClass tmp(-a);  
     return tmp;
 }
 
-MyClass& MyClass::operator -- () { // Prefix form
+MyClass& MyClass::operator--() { // Prefix form
     a--;
     return *this;
 }
 
-MyClass MyClass::operator -- (int) { // Postfix form
+MyClass MyClass::operator--(int) { // Postfix form
     MyClass b(a);
     a--;
     return b;
 }
 
 
-MyClass& MyClass::operator -= (const MyClass &obj) {
+MyClass& MyClass::operator-=(const MyClass &obj) {
     a-=obj.getA();
     cout << "-=\n";
     return *this;
@@ -83,7 +83,7 @@ MyClass& MyClass::operator -= (const MyClass &obj) {
 
 
 // This function don’t belong to any class.
-MyClass operator - (const MyClass &o1,  const MyClass &o2) {
+MyClass operator-(const MyClass &o1,  const MyClass &o2) {
     MyClass tmp(o1);  
     return tmp=tmp-o2;
 }
