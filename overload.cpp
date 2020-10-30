@@ -10,7 +10,7 @@ class MyClass {
   public:
     MyClass();
     MyClass(int d) { a=d; };
-    MyClass& operator+=(const MyClass&obj);  
+    MyClass& operator+=(const MyClass &obj);  
     int getA() const { return a; };
 };
 #endif
@@ -20,8 +20,8 @@ class MyClass {
   public:
     MyClass();
     MyClass(int d) { a=d; };
-    MyClass& operator+=(const MyClass&obj);  
-    MyClass& operator-=(const MyClass&obj);  
+    MyClass& operator+=(const MyClass &obj);  
+    MyClass& operator-=(const MyClass &obj);  
     int getA() const { return a; };
     
     MyClass& operator = (const MyClass &obj);
