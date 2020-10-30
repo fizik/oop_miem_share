@@ -1,7 +1,5 @@
 #include <iostream>
-
 using namespace std;
-typedef int Int;
 
 int main() {
     Int x,y;
