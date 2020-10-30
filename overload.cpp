@@ -2,13 +2,13 @@
 
 using namespace std;
 
-typedef int myint;
+typedef int Int;
 
 int main() {
-    myint x, y, z;
-    x=10;
-    y=25;
+    Int x, y, z;
+    x=19;
+    y=29;
     z=x+y;
 
-    cout<<"Sum of "<<x<<" + "<<y<<" = " << z;
+    cout << "Sum of " << x << " + " << y << " = " << z;
 }
