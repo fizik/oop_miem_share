@@ -4,6 +4,17 @@ using namespace std;
 
 typedef int Int;
 
+#if ForSlide
+class MyClass {
+    int a;  
+  public:
+    MyClass();
+    MyClass(int d) { a=d; };
+    MyClass& operator+=(const MyClass&obj);  
+    int getA() const { return a; };
+};
+#endif
+
 class MyClass {
     int a;  
   public:
